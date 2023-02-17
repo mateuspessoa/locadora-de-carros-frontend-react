@@ -1,0 +1,12 @@
+.container_geral {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.container_lateral {
+    display: flex;
+    flex-direction: column;
+    width: 82%;
+    height: 100vh;
+}

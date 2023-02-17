@@ -1,0 +1,40 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 96%;
+    padding-right: 28px;
+    height: 50px;
+    margin-left: 25px;
+    background-color: #2B2C40;
+    border-radius: 5px;
+    margin-top: 15px;
+    -webkit-box-shadow: 1px 1px 12px 2px rgba(0, 0, 0, 0.048); 
+    box-shadow: 1px 1px 12px 2px rgba(0, 0, 0, 0.047);
+}
+
+.icon {
+    padding: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.icon:hover {
+    background-color: rgba(255, 255, 255, 0.214);
+}
+
+.btn_sair {
+    margin-left: 15px;
+    width: 70px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid rgb(112, 0, 0);
+    color: white;
+    cursor: pointer;
+    transition: all ease .5s;
+}
+
+.btn_sair:hover {
+    background-color: red;
+}

@@ -1,0 +1,268 @@
+.alugueis {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 96%;
+    height: 170px;
+    padding-left: 25px;
+    padding-right: 180px;
+    background-color: #2B2C40;
+    margin-left: 25px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #6B6BFF
+}
+
+.esquerda {
+    display: flex;
+    flex-direction: column;
+}
+
+.esquerda h3 {
+    margin-bottom: 25px;
+    font-family: 'Inter', sans-serif;
+    color: #6B6BFF;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.esquerda p {
+    margin-bottom: 25px;
+    font-family: 'Inter', sans-serif;
+    color: #8B8BA5;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.link {
+    text-decoration: none;
+    width: 22%;
+}
+
+.btn_aluguel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    font-family: 'Inter', sans-serif;
+    color: #02d402;
+    font-size: 14px;
+    width: 100%;
+    height: 30px;
+    border-radius: 6px;
+    border: 1px solid #02d402;
+    cursor: pointer;
+    transition: all ease .5s;
+}
+
+.btn_aluguel:hover {
+    background-color: green;
+    border: none;
+    color: white;
+}
+
+.direita {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+}
+
+.direita img {
+    width: 130px;
+    height: 130px;
+}
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    height: 170px;
+    background-color: #2B2C40;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 25px;
+    margin-left: 25px;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #6B6BFF;
+}
+
+.infos h2 {
+    font-family: 'Inter', sans-serif;
+    color: #d2d2f6;
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 25px;
+}
+
+.card_interno {
+    display: flex;
+    width: 100%;
+    height: 50%;
+    /*background-color: red;*/
+}
+
+.card_conteudo {
+    display: flex;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    /*background-color: green;*/
+}
+
+.card_conteudo h3 {
+    margin-left: 8px;
+    font-family: 'Inter', sans-serif;
+    color: #d2d2f6;
+}
+
+.card_conteudo span {
+    color: #8B8BA5;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.icone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ff00003c;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.icone_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #6b6bff27;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.icone_3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #02d40239;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.icone_4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #edc2042d;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.container_inferior {
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    margin-left: 25px;
+    margin-top: 30px;
+    height: 110px;
+}
+
+.card_inferior_1 {
+    display: flex;
+    width: 23%;
+    height: 100%;
+    padding: 25px;
+    border: 1px solid #02d402;
+    border-radius: 5px;
+}
+
+.card_inferior_2 {
+    display: flex;
+    padding: 25px;
+    width: 23%;
+    height: 100%;
+    border: 1px solid #edc204;
+    border-radius: 5px;
+}
+
+.card_inferior_3 {
+    display: flex;
+    padding: 25px;
+    width: 23%;
+    height: 100%;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+
+.card_inferior_4 {
+    display: flex;
+    padding: 25px;
+    width: 23%;
+    height: 100%;
+    border: 1px solid #6B6BFF;
+    border-radius: 5px;
+}
+
+.esquerda_inferior {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+}
+
+.esquerda_inferior h3 {
+    margin-bottom: 7px;
+    font-size: 25px;
+    font-family: 'Inter', sans-serif;
+    color: #d2d2f6;
+}
+
+.esquerda_inferior p {
+    font-family: 'Inter', sans-serif;
+    color: #8B8BA5;
+    font-size: 12px;
+}
+
+.direita_inferior {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%;
+}
+
+.ico_inferior_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #02d40239;
+    border-radius: 8px;
+}
+
+.ico_inferior_2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #edc2042d;
+    border-radius: 8px;
+}
+
+.ico_inferior_3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #ff00003c;
+    border-radius: 8px;
+}
+
+.ico_inferior_4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: #6b6bff27;
+    border-radius: 8px;
+}
