@@ -5,6 +5,8 @@ import styles from "../styles/veiculo.module.css";
 import axios from "axios";
 import Pagination from "../components/Pagination";
 import SelectorPages from "../components/SelectorPages";
+import { AiOutlineSearch } from 'react-icons/ai'
+
 
 const Veiculos = () => {
 
@@ -27,6 +29,11 @@ const Veiculos = () => {
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
   const currentItens = itens.slice(startIndex, endIndex)
+
+  //Filtro de Busca
+  const [search, setSearch] = useState("")
+  const searchLowerCase = search.toLowerCase()
+  const filtro = currentItens.filter((item) => item.nome.toLowerCase().includes(searchLowerCase) || item.ano.toLowerCase().includes(searchLowerCase) || item.placa.toLowerCase().includes(searchLowerCase) || item.status.toLowerCase().includes(searchLowerCase))  
 
   const containerForm = useRef();
   const containerSidebar = useRef();
@@ -143,6 +150,15 @@ const Veiculos = () => {
             <button onClick={() => abrir()} className={styles.btn_add}>
               <span>+</span>Novo Veículo
             </button>
+            <div className={styles.container_search}>
+              <input className={styles.search} type="text" placeholder="Procure por um veículo" value={search} onChange={(e) => setSearch(e.target.value)} onClick={() => setItensPerPage(1000)} onBlur={() => setItensPerPage(5)} />
+              <div className={styles.container_btn_opcoes}>
+                  <button className={styles.btn_opcoes}>Todos</button>
+                  <button className={styles.btn_opcoes}>Disponíveis</button>
+                  <button className={styles.btn_opcoes}>Indisponíveis</button>
+                  <button className={styles.btn_opcoes}>Manutanção</button>
+              </div>
+            </div>
             <SelectorPages itensPerPage={itensPerPage} setItensPerPage={setItensPerPage} />
           </div>
 
@@ -158,8 +174,8 @@ const Veiculos = () => {
                 </tr>
               </thead>
               <tbody>
-                {currentItens?.map((veiculoss) => (
-                  <tr>
+                {filtro?.map((veiculoss) => (
+                  <tr key={veiculoss.id}>
                     <td data-label="Name">{veiculoss.nome}</td>
                     <td data-label="Title">{veiculoss.ano}</td>
                     <td data-label="Website">{veiculoss.placa}</td>

@@ -1,0 +1,22 @@
+.container_select select {
+    background-color: transparent;
+    font-family: "Inter", sans-serif;
+    color: #ffffffb8;
+    padding: 2px;
+    font-weight: 400;
+    border: 1px solid #ffffffb8;
+    outline: none;
+    cursor: pointer;
+    overflow: auto;
+}
+
+.container_select select > option {
+    background-color: #242333;
+}
+
+.container_select p {
+    margin-bottom: 8px;
+    font-family: "Inter", sans-serif;
+    color: #ffffffb8;
+    font-size: 14px;
+}
