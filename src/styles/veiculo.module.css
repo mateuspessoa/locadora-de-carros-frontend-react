@@ -1,0 +1,214 @@
+.container_geral {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.container_lateral {
+  display: flex;
+  flex-direction: column;
+  width: 82%;
+  height: 100vh;
+}
+
+.container_sidebar {
+  width: 18%;
+}
+
+.container_acoes {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  margin-left: 25px;
+  margin-top: 30px;
+  height: 82vh;
+  background-color: #2b2c40;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.container_adcionar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  /*border-bottom: 1px solid #8b8ba535;*/
+}
+
+.btn_add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  height: 40px;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  color: #02d402;
+  border-radius: 6px;
+  border: 1px solid #02d402;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.btn_add span {
+  font-size: 25px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.btn_add:hover {
+  background-color: green;
+  border: none;
+  color: white;
+}
+
+/*FORMULÁRIO*/
+
+.container_geral_form {
+  display: none;
+  width: 25%;
+  height: 65vh;
+  padding: 25px;
+  background-color: #393b55;
+  position: absolute;
+  z-index: 99999;
+  top: 140px;
+  left: 650px;
+  border-radius: 5px;
+  animation: animate-div 0.5s;
+}
+
+@keyframes animate-div {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.info_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  font-family: "Inter", sans-serif;
+  color: #d8d8fa;
+}
+
+.btn_fechar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  color: #d8d8fa;
+  font-size: 16px;
+  background-color: transparent;
+  transition: all ease 0.5s;
+  cursor: pointer;
+}
+
+.btn_fechar:hover {
+  border: 1px solid red;
+  color: red;
+}
+
+.label {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  color: #c4c4fd;
+  font-size: 14px;
+}
+
+.label input {
+  width: 100%;
+  height: 30px;
+  border: 2px solid #6b6bff;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  color: white;
+  border-radius: 5px;
+  margin-top: 9px;
+  padding-left: 10px;
+}
+
+.label input:focus {
+  outline: 1px solid #02d402;
+  border: none;
+}
+
+.btn_submit {
+  margin-top: 40px;
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  color: #02d402;
+  background-color: transparent;
+  border: 2px solid #02d402;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.btn_submit:hover {
+  color: white;
+  background-color: green;
+  border: 2px solid green;
+}
+
+/*TABELA*/
+
+.container_table {
+  /*background-color: red;*/
+  width: 100%;
+  height: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 80%;
+  table-layout: fixed;
+  margin-top: 25px;
+  font-family: "Inter", sans-serif;
+  border-collapse:separate;
+    border: solid #ccc 1px;
+    -webkit-border-radius: 25px;
+       -moz-border-radius: 25px;
+            border-radius: 25px;
+}
+
+table tr {
+  background-color: transparent;
+  border: 1px solid #dddddd2c;
+  padding: 10px;
+}
+.thead {
+  background-color: rgb(67 56 202);
+  color: #fff;
+}
+
+table th {
+    color: gray;
+    padding: 20px;
+    text-align: center;
+}
+
+table td {
+  padding: 20px;
+  text-align: center;
+  color: #ffffff74;
+  border: 1px solid #ffffff5c;
+}
+
+table th {
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+}

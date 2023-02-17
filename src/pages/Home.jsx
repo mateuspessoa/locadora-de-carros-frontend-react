@@ -7,7 +7,9 @@ import CardHome from '../components/CardHome'
 const Home = () => {
   return (
     <div className={styles.container_geral}>
-      <Sidebar />
+      <div className={styles.container_sidebar}>
+        <Sidebar />
+      </div>
       <div className={styles.container_lateral}>
         <Menu />
         <CardHome />
