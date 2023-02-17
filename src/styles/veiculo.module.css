@@ -74,7 +74,7 @@
   position: absolute;
   z-index: 99999;
   top: 140px;
-  left: 650px;
+  left: 580px;
   border-radius: 5px;
   animation: animate-div 0.5s;
 }

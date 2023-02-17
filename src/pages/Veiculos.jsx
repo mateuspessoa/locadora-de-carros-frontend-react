@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Menu from "../components/Menu";
 import Sidebar from "../components/Sidebar";
 import styles from "../styles/veiculo.module.css";
@@ -8,15 +8,25 @@ import SelectorPages from "../components/SelectorPages";
 
 const Veiculos = () => {
 
-    //Paginação
-    const [itensPerPage, setItensPerPage] = useState(5)
-    const [currentPage, setCurrentPage] = useState(0)
+  const [veiculo, setVeiculo] = useState({
+    nome: "",
+    placa: "",
+    ano: "",
+    valorDiaria: ""
+  })
 
-    //Paginação
-    /*const pages = Math.ceil(itens.length / itensPerPage)*/
-    const startIndex = currentPage * itensPerPage;
-    const endIndex = startIndex + itensPerPage;
-    /*const currentItens = itens.slice(startIndex, endIndex)*/
+  const [veiculos, setVeiculos] = useState([])
+  const [atualizar, setAtualizar] = useState();
+
+  //Paginação
+  const [itensPerPage, setItensPerPage] = useState(5)
+  const [currentPage, setCurrentPage] = useState(0)
+
+  //Paginação
+  /*const pages = Math.ceil(itens.length / itensPerPage)*/
+  const startIndex = currentPage * itensPerPage;
+  const endIndex = startIndex + itensPerPage;
+  /*const currentItens = itens.slice(startIndex, endIndex)*/
 
   const containerForm = useRef();
   const containerSidebar = useRef();
@@ -36,6 +46,49 @@ const Veiculos = () => {
     containerSidebar.current.style.opacity = "1";
     containerLateral.current.style.filter = "alpha(opacity=10";
     containerLateral.current.style.opacity = "1";
+    limpar()
+  }
+
+  useEffect(() => {
+    buscarTodos();
+  }, [atualizar])
+
+
+  function buscarTodos() {
+    axios.get("http://localhost:8080/api/veiculo/").then((result) => {
+        setVeiculos(result.data);
+    })
+  }
+
+  function handleChange(e) {
+    setVeiculo({ ...veiculo, [e.target.name]: e.target.value });
+  }
+
+  function limpar() {
+    setVeiculo({
+      nome: "",
+      placa: "",
+      ano: "",
+      valorDiaria: ""
+    });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(veiculo)
+    if (veiculo.id === undefined) {
+      axios.post("http://localhost:8080/api/veiculo/", veiculo)
+        .then((result) => {
+          setVeiculo(result)
+        })
+    } else {
+      axios.put("http://localhost:8080/api/veiculo/", veiculo)
+      .then((result) => {
+        setVeiculo(result)
+      })
+    }
+    limpar();
+    fechar()
   }
 
   return (
@@ -48,24 +101,31 @@ const Veiculos = () => {
             X
           </button>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className={styles.label}>
             <label>Nome</label>
-            <input type="text" />
+            <input type="text" name="nome" onChange={handleChange} value={veiculo.nome || ''} required />
           </div>
           <div className={styles.label}>
             <label>Placa</label>
-            <input type="text" />
+            <input type="text" name="placa" onChange={handleChange} value={veiculo.placa || ''} required />
           </div>
           <div className={styles.label}>
             <label>Ano</label>
-            <input type="text" />
+            <input type="text" name="ano" onChange={handleChange} value={veiculo.ano || ''} required />
           </div>
           <div className={styles.label}>
             <label>Valor da Diária</label>
-            <input type="text" />
+            <input type="text" name="valorDiaria" onChange={handleChange} value={veiculo.valorDiaria || ''} required />
           </div>
-          <input className={styles.btn_submit} type="submit" value="Cadastar" />
+          {
+            veiculo.id && <input className={styles.btn_submit} type="submit" value="Cadastar" />
+          }
+
+          {
+            veiculo.id === undefined && <input className={styles.btn_submit} type="submit" value="Cadastar" />
+          }
+          
         </form>
       </div>
 
