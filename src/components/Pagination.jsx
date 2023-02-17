@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../styles/pagination.module.css"
 
 const Pagination = ({ pages, currentPage, setCurrentPage }) => {
   return (
@@ -6,7 +7,7 @@ const Pagination = ({ pages, currentPage, setCurrentPage }) => {
       {Array.from(Array(pages), (item, index) => (
         <button
             key={index}
-            style={ index === currentPage ? {backgroundColor: "gray"} : null }
+            className = {styles.btn}
             value={index}
             onClick={(e) => setCurrentPage(Number(e.target.value))}
         >

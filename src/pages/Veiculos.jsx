@@ -15,7 +15,7 @@ const Veiculos = () => {
     valorDiaria: ""
   })
 
-  const [veiculos, setVeiculos] = useState([])
+  const [itens, setItens] = useState([])
   const [atualizar, setAtualizar] = useState();
 
   //Paginação
@@ -23,10 +23,10 @@ const Veiculos = () => {
   const [currentPage, setCurrentPage] = useState(0)
 
   //Paginação
-  /*const pages = Math.ceil(itens.length / itensPerPage)*/
+  const pages = Math.ceil(itens.length / itensPerPage)
   const startIndex = currentPage * itensPerPage;
   const endIndex = startIndex + itensPerPage;
-  /*const currentItens = itens.slice(startIndex, endIndex)*/
+  const currentItens = itens.slice(startIndex, endIndex)
 
   const containerForm = useRef();
   const containerSidebar = useRef();
@@ -56,7 +56,7 @@ const Veiculos = () => {
 
   function buscarTodos() {
     axios.get("http://localhost:8080/api/veiculo/").then((result) => {
-        setVeiculos(result.data);
+        setItens(result.data);
     })
   }
 
@@ -143,7 +143,7 @@ const Veiculos = () => {
             <button onClick={() => abrir()} className={styles.btn_add}>
               <span>+</span>Novo Veículo
             </button>
-            {/*<SelectorPages itensPerPage={itensPerPage} setItensPerPage={setItensPerPage} />*/}
+            <SelectorPages itensPerPage={itensPerPage} setItensPerPage={setItensPerPage} />
           </div>
 
           <div className={styles.container_table}>
@@ -158,52 +158,20 @@ const Veiculos = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td data-label="Name">Fiat Mobi</td>
-                  <td data-label="Title">2018</td>
-                  <td data-label="Website">QQA-2452</td>
-                  <td data-label="Role">Disponível</td>
-                  <td data-label="Role">Botão</td>
-                </tr>
-                <tr>
-                  <td scope="row" data-label="Name">
-                    Lindsay Walton
-                  </td>
-                  <td data-label="Title">Designer</td>
-                  <td data-label="Website">lindawalton.com</td>
-                  <td data-label="Role">Member</td>
-                  <td data-label="Role">Admin</td>
-                </tr>
-                <tr>
-                  <td scope="row" data-label="Name">
-                    Tom Cook
-                  </td>
-                  <td data-label="Title">Marketer</td>
-                  <td data-label="Website">tom.in</td>
-                  <td data-label="Role">Admin</td>
-                  <td data-label="Role">Admin</td>
-                </tr>
-                <tr>
-                  <td scope="row" data-label="Name">
-                    Floyd Miles
-                  </td>
-                  <td data-label="Title">Principal Designer</td>
-                  <td data-label="Website">floydmiles.com</td>
-                  <td data-label="Role">Member</td>
-                  <td data-label="Role">Admin</td>
-                </tr>
-                <tr>
-                  <td scope="row" data-label="Name">
-                    Floyd Miles
-                  </td>
-                  <td data-label="Title">Principal Designer</td>
-                  <td data-label="Website">floydmiles.com</td>
-                  <td data-label="Role">Member</td>
-                  <td data-label="Role">Admin</td>
-                </tr>
+                {currentItens?.map((veiculoss) => (
+                  <tr>
+                    <td data-label="Name">{veiculoss.nome}</td>
+                    <td data-label="Title">{veiculoss.ano}</td>
+                    <td data-label="Website">{veiculoss.placa}</td>
+                    <td data-label="Role">{veiculoss.status}</td>
+                    <td data-label="Role">Botão</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
-            {/*<Pagination pages={pages} setCurrentPage={setCurrentPage} />*/}
+          </div>
+          <div className={styles.container_pag}>
+                <Pagination pages={pages} setCurrentPage={setCurrentPage} />
           </div>
         </div>
       </div>

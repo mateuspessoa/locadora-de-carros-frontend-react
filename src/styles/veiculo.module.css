@@ -212,3 +212,11 @@ table th {
   letter-spacing: 0.1em;
   text-transform: capitalize;
 }
+
+.container_pag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 17%;
+}
