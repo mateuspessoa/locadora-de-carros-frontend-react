@@ -1,9 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Menu from "../components/Menu";
 import Sidebar from "../components/Sidebar";
 import styles from "../styles/veiculo.module.css";
+import axios from "axios";
+import Pagination from "../components/Pagination";
+import SelectorPages from "../components/SelectorPages";
 
 const Veiculos = () => {
+
+    //Paginação
+    const [itensPerPage, setItensPerPage] = useState(5)
+    const [currentPage, setCurrentPage] = useState(0)
+
+    //Paginação
+    /*const pages = Math.ceil(itens.length / itensPerPage)*/
+    const startIndex = currentPage * itensPerPage;
+    const endIndex = startIndex + itensPerPage;
+    /*const currentItens = itens.slice(startIndex, endIndex)*/
+
   const containerForm = useRef();
   const containerSidebar = useRef();
   const containerLateral = useRef();
@@ -69,26 +83,27 @@ const Veiculos = () => {
             <button onClick={() => abrir()} className={styles.btn_add}>
               <span>+</span>Novo Veículo
             </button>
+            {/*<SelectorPages itensPerPage={itensPerPage} setItensPerPage={setItensPerPage} />*/}
           </div>
 
           <div className={styles.container_table}>
             <table>
               <thead>
                 <tr className="thead">
-                  <th scope="col">Name</th>
-                  <th scope="col">Title</th>
-                  <th scope="col">Website</th>
-                  <th scope="col">Role</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Ano</th>
+                  <th scope="col">Placa</th>
+                  <th scope="col">Disponibilidade</th>
                   <th scope="col">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td data-label="Name">Jeevan Kumar</td>
-                  <td data-label="Title">Front-end Expert</td>
-                  <td data-label="Website">jeevankaree.com</td>
-                  <td data-label="Role">Admin</td>
-                  <td data-label="Role">Admin</td>
+                  <td data-label="Name">Fiat Mobi</td>
+                  <td data-label="Title">2018</td>
+                  <td data-label="Website">QQA-2452</td>
+                  <td data-label="Role">Disponível</td>
+                  <td data-label="Role">Botão</td>
                 </tr>
                 <tr>
                   <td scope="row" data-label="Name">
@@ -117,8 +132,18 @@ const Veiculos = () => {
                   <td data-label="Role">Member</td>
                   <td data-label="Role">Admin</td>
                 </tr>
+                <tr>
+                  <td scope="row" data-label="Name">
+                    Floyd Miles
+                  </td>
+                  <td data-label="Title">Principal Designer</td>
+                  <td data-label="Website">floydmiles.com</td>
+                  <td data-label="Role">Member</td>
+                  <td data-label="Role">Admin</td>
+                </tr>
               </tbody>
             </table>
+            {/*<Pagination pages={pages} setCurrentPage={setCurrentPage} />*/}
           </div>
         </div>
       </div>
