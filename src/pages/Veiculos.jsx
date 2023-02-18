@@ -5,7 +5,10 @@ import styles from "../styles/veiculo.module.css";
 import axios from "axios";
 import Pagination from "../components/Pagination";
 import SelectorPages from "../components/SelectorPages";
-import { AiOutlineSearch } from 'react-icons/ai'
+import { AiOutlineCheck } from 'react-icons/ai'
+import { AiOutlineStop } from 'react-icons/ai'
+import { AiOutlineSetting } from 'react-icons/ai'
+import { AiOutlineDelete } from 'react-icons/ai'
 
 
 const Veiculos = () => {
@@ -64,6 +67,42 @@ const Veiculos = () => {
   function buscarTodos() {
     axios.get("http://localhost:8080/api/veiculo/").then((result) => {
         setItens(result.data);
+    })
+  }
+
+  function buscarVeiculosDisponiveis(){
+    axios.get("http://localhost:8080/api/veiculo/disponiveis").then(result => {
+      setItens(result.data);
+    });
+  }
+
+  function buscarVeiculosIdisponiveis(){
+    axios.get("http://localhost:8080/api/veiculo/indisponiveis").then(result => {
+      setItens(result.data);
+    });
+  }
+
+  function buscarVeiculosManutencao(){
+    axios.get("http://localhost:8080/api/veiculo/manutencao").then(result => {
+      setItens(result.data);
+    });
+  }
+
+  function tornarDisponivel(id) {
+    axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + id).then(result => {
+      setAtualizar(result);
+    })
+  }
+
+  function tornarIndisponivel(id) {
+    axios.post("http://localhost:8080/api/veiculo/tornarindisponivel/" + id).then(result => {
+      setAtualizar(result);
+    })
+  }
+
+  function colocarManutencao(id) {
+    axios.post("http://localhost:8080/api/veiculo/colocarmanutencao/" + id).then(result => {
+      setAtualizar(result);
     })
   }
 
@@ -153,10 +192,10 @@ const Veiculos = () => {
             <div className={styles.container_search}>
               <input className={styles.search} type="text" placeholder="Procure por um veículo" value={search} onChange={(e) => setSearch(e.target.value)} onClick={() => setItensPerPage(1000)} onBlur={() => setItensPerPage(5)} />
               <div className={styles.container_btn_opcoes}>
-                  <button className={styles.btn_opcoes}>Todos</button>
-                  <button className={styles.btn_opcoes}>Disponíveis</button>
-                  <button className={styles.btn_opcoes}>Indisponíveis</button>
-                  <button className={styles.btn_opcoes}>Manutanção</button>
+                  <button onClick={buscarTodos} className={styles.btn_opcoes}>Todos</button>
+                  <button onClick={buscarVeiculosDisponiveis} className={styles.btn_opcoes}>Disponíveis</button>
+                  <button onClick={buscarVeiculosIdisponiveis} className={styles.btn_opcoes}>Indisponíveis</button>
+                  <button onClick={buscarVeiculosManutencao} className={styles.btn_opcoes}>Manutanção</button>
               </div>
             </div>
             <SelectorPages itensPerPage={itensPerPage} setItensPerPage={setItensPerPage} />
@@ -180,7 +219,29 @@ const Veiculos = () => {
                     <td data-label="Title">{veiculoss.ano}</td>
                     <td data-label="Website">{veiculoss.placa}</td>
                     <td data-label="Role">{veiculoss.status}</td>
-                    <td data-label="Role">Botão</td>
+                    <td className={styles.td_icones} data-label="Role">
+                      {veiculoss.status == "Disponível" &&
+                        <>
+                          <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
+                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
+                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                        </>
+                      }
+                      {veiculoss.status == "Indisponível" &&
+                        <>
+                          <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
+                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                        </>
+                      }
+                      {veiculoss.status == "Manutenção" &&
+                        <>
+                          <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                          <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
+                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                        </>
+                      }
+                    </td>
                   </tr>
                 ))}
               </tbody>
