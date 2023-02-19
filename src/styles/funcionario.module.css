@@ -40,7 +40,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 125px;
+  width: 155px;
   height: 40px;
   background-color: transparent;
   font-family: "Inter", sans-serif;
@@ -68,7 +68,7 @@
 .container_geral_form {
   display: none;
   width: 25%;
-  height: 65vh;
+  height: 72vh;
   padding: 25px;
   background-color: #2b2c40;
   position: absolute;
@@ -165,7 +165,7 @@
 .container_table {
   width: 100%;
   max-height: 80%;
-  overflow-y: auto;
+  overflow: auto;
 }
 
 ::-webkit-scrollbar {

@@ -106,6 +106,12 @@ const Veiculos = () => {
     })
   }
 
+  function RemoverDaFrota(id) {
+    axios.post("http://localhost:8080/api/veiculo/removerdafrota/" + id).then(result => {
+      setAtualizar(result);
+    })
+  }
+
   function handleChange(e) {
     setVeiculo({ ...veiculo, [e.target.name]: e.target.value });
   }
@@ -224,21 +230,26 @@ const Veiculos = () => {
                         <>
                           <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
                           <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
-                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
                       {veiculoss.status == "Indisponível" &&
                         <>
                           <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
-                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
                       {veiculoss.status == "Manutenção" &&
                         <>
                           <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
-                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                        </>
+                      }
+                      {veiculoss.status == "Removido da Frota" &&
+                        <>
+                          <p>Apenas Consulta</p>
                         </>
                       }
                     </td>
