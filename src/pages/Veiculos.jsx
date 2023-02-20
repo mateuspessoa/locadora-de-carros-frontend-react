@@ -7,8 +7,9 @@ import Pagination from "../components/Pagination";
 import SelectorPages from "../components/SelectorPages";
 import { AiOutlineCheck } from 'react-icons/ai'
 import { AiOutlineStop } from 'react-icons/ai'
-import { AiOutlineSetting } from 'react-icons/ai'
+import { AiFillSetting } from 'react-icons/ai'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { AiFillEdit } from 'react-icons/ai'
 
 
 const Veiculos = () => {
@@ -112,6 +113,11 @@ const Veiculos = () => {
     })
   }
 
+  function editar(dados) {
+    setVeiculo(dados)
+    abrir()
+  }
+
   function handleChange(e) {
     setVeiculo({ ...veiculo, [e.target.name]: e.target.value });
   }
@@ -131,12 +137,12 @@ const Veiculos = () => {
     if (veiculo.id === undefined) {
       axios.post("http://localhost:8080/api/veiculo/", veiculo)
         .then((result) => {
-          setVeiculo(result)
+          setAtualizar(result)
         })
     } else {
       axios.put("http://localhost:8080/api/veiculo/", veiculo)
       .then((result) => {
-        setVeiculo(result)
+        setAtualizar(result)
       })
     }
     limpar();
@@ -229,14 +235,16 @@ const Veiculos = () => {
                       {veiculoss.status == "Disponível" &&
                         <>
                           <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
-                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
+                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
+                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
                       {veiculoss.status == "Indisponível" &&
                         <>
                           <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiOutlineSetting color="#6B6BFF"/></div>
+                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
+                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
@@ -244,6 +252,7 @@ const Veiculos = () => {
                         <>
                           <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
+                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }

@@ -313,7 +313,7 @@ table th {
   padding: 5px;
   border-radius: 50%;
   background-color: transparent;
-  border: 1px solid #6B6BFF;
+  border: 1px solid #0000ff;
   transition: all ease .5s;
   cursor: pointer;
 }
@@ -330,6 +330,18 @@ table th {
   cursor: pointer;
 }
 
+.tab_ico_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #00e7fc;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
 .tab_ico_1:hover {
   background-color: #00800040;
 }
@@ -339,9 +351,13 @@ table th {
 }
 
 .tab_ico_3:hover {
-  background-color: #4545a54f;
+  background-color: #0000ff2a;
 }
 
 .tab_ico_4:hover {
   background-color: #9100003c;
+}
+
+.tab_ico_edit:hover {
+  background-color: #00e7fc3a;
 }

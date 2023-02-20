@@ -9,6 +9,7 @@ import { AiOutlineCheck } from 'react-icons/ai'
 import { MdOutlineBeachAccess } from 'react-icons/md'
 import { GiHealthNormal } from 'react-icons/gi'
 import { AiOutlineDelete } from 'react-icons/ai'
+import { AiFillEdit } from 'react-icons/ai'
 
 
 const Funcionario = () => {
@@ -113,6 +114,11 @@ const Funcionario = () => {
     })
   }
 
+  function editar(dados) {
+    setFuncionario(dados)
+    abrir()
+  }
+
   function handleChange(e) {
     setFuncionario({ ...funcionario, [e.target.name]: e.target.value });
   }
@@ -133,12 +139,12 @@ const Funcionario = () => {
     if (funcionario.id === undefined) {
       axios.post("http://localhost:8080/api/funcionario/", funcionario)
         .then((result) => {
-          setFuncionario(result)
+          setAtualizar(result)
         })
     } else {
       axios.put("http://localhost:8080/api/funcionario/", funcionario)
       .then((result) => {
-        setFuncionario(result)
+        setAtualizar(result)
       })
     }
     limpar();
@@ -236,6 +242,7 @@ const Funcionario = () => {
                         <>
                           <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
                           <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
+                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
@@ -243,6 +250,7 @@ const Funcionario = () => {
                         <>
                           <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
+                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
@@ -250,6 +258,7 @@ const Funcionario = () => {
                         <>
                           <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
+                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
