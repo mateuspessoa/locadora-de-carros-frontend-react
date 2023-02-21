@@ -1,0 +1,364 @@
+.container_geral {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.container_lateral {
+  display: flex;
+  flex-direction: column;
+  width: 82%;
+  height: 100vh;
+}
+
+.container_sidebar {
+  width: 18%;
+}
+
+.container_acoes {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+  margin-left: 25px;
+  margin-top: 30px;
+  height: 82vh;
+  background-color: #2b2c40;
+  border-radius: 5px;
+  padding: 25px;
+}
+
+.container_adcionar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 10vh;
+  /*border-bottom: 1px solid #8b8ba535;*/
+}
+
+.btn_add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 40px;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  color: #02d402;
+  border-radius: 6px;
+  border: 1px solid #02d402;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.btn_add span {
+  font-size: 25px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.btn_add:hover {
+  background-color: green;
+  border: none;
+  color: white;
+}
+
+/*FORMULÁRIO*/
+
+.container_geral_form {
+  display: none;
+  width: 25%;
+  height: 82vh;
+  padding: 25px;
+  background-color: #2b2c40;
+  position: absolute;
+  z-index: 99999;
+  top: 70px;
+  left: 580px;
+  border-radius: 5px;
+  animation: animate-div 0.5s;
+}
+
+@keyframes animate-div {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.info_form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  font-family: "Inter", sans-serif;
+  color: #d8d8fa;
+}
+
+.btn_fechar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  color: #d8d8fa;
+  font-size: 16px;
+  background-color: transparent;
+  transition: all ease 0.5s;
+  cursor: pointer;
+}
+
+.btn_fechar:hover {
+  border: 1px solid red;
+  color: red;
+}
+
+.label {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Inter", sans-serif;
+  color: #c4c4fd;
+  font-size: 14px;
+}
+
+.label input {
+  width: 100%;
+  height: 30px;
+  border: 2px solid #c4c4fd;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  color: white;
+  border-radius: 5px;
+  margin-top: 9px;
+  padding-left: 10px;
+}
+
+.label input:focus {
+  outline: 1px solid #d5d5d5;
+  border: none;
+}
+
+.btn_submit {
+  margin-top: 40px;
+  width: 90px;
+  height: 40px;
+  border-radius: 5px;
+  font-family: "Inter", sans-serif;
+  color: #02d402;
+  background-color: transparent;
+  border: 2px solid #02d402;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.btn_submit:hover {
+  color: white;
+  background-color: green;
+  border: 2px solid green;
+}
+
+/*TABELA*/
+
+.container_table {
+  width: 100%;
+  max-height: 80%;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  }
+
+table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  height: 85%;
+  table-layout: fixed;
+  margin-top: 25px;
+  font-family: "Inter", sans-serif;
+  border-collapse:collapse;
+    border: solid #ccc 1px;
+    -webkit-border-radius: 25px;
+       -moz-border-radius: 25px;
+            border-radius: 25px;
+}
+
+table tr {
+  background-color: transparent;
+  border: 1px solid #dddddd2c;
+  padding: 10px;
+}
+.thead {
+  background-color: rgb(67 56 202);
+  color: #fff;
+}
+
+table th {
+    color: #dddddd;
+    padding: 20px;
+    text-align: center;
+}
+
+table td {
+  padding: 20px;
+  text-align: center;
+  color: #ffffffb8;
+  border: 1px solid #ffffff5c;
+}
+
+table th {
+  font-size: 20px;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+}
+
+.container_pag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 8%;
+  margin-top: 1px;
+}
+
+.container_search {
+  display: flex;
+  flex-direction: column;
+  height: 70px;
+  width: 40%;
+}
+
+.container_search input {
+  width: 100%;
+  height: 27px;
+  border-radius: 5px;
+  padding-left: 10px;
+  background-color: transparent;
+  border: none;
+  border: 1px solid #ffffffb8;
+  outline: none;
+  color: #ffffffb8;
+}
+
+.container_search input::placeholder {
+  color: #ffffff38;
+}
+
+.container_btn_opcoes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 44px;
+}
+
+.btn_opcoes {
+  width: 105px;
+  height: 28px;
+  background-color: transparent;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  border: 1px solid #ffb53d;
+  border-radius: 5px;
+  color: #ffb53d;
+  cursor: pointer;
+  transition: all ease .5s;
+}
+
+.btn_opcoes:hover {
+  border: none;
+  background-color: #ffb53d;
+  color: white;
+}
+
+.td_icones {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.tab_ico_1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #02d402;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
+.tab_ico_2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #edc204;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
+.tab_ico_3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #6B6BFF;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
+.tab_ico_4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #ff0000;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
+.tab_ico_edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 1px solid #00e7fc;
+  transition: all ease .5s;
+  cursor: pointer;
+}
+
+
+.tab_ico_1:hover {
+  background-color: #00800040;
+}
+
+.tab_ico_2:hover {
+  background-color: #ba99054e;
+}
+
+.tab_ico_3:hover {
+  background-color: #4545a54f;
+}
+
+.tab_ico_4:hover {
+  background-color: #9100003c;
+}
+
+.tab_ico_edit:hover {
+  background-color: #00e7fc3a;
+}
