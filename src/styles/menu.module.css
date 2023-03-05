@@ -1,7 +1,4 @@
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
     width: 96%;
     padding-right: 28px;
     height: 50px;
@@ -11,6 +8,14 @@
     margin-top: 15px;
     -webkit-box-shadow: 1px 1px 12px 2px rgba(0, 0, 0, 0.048); 
     box-shadow: 1px 1px 12px 2px rgba(0, 0, 0, 0.047);
+}
+
+.content_geral {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .icon {
@@ -37,4 +42,10 @@
 
 .btn_sair:hover {
     background-color: red;
+}
+
+@media (max-width: 740px) {
+    .container {
+        display: none;
+    }
 }

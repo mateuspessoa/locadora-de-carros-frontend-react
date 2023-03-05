@@ -266,3 +266,98 @@
     background-color: #6b6bff27;
     border-radius: 8px;
 }
+
+@media (max-width: 740px) {
+
+    .container_geral {
+        margin-top: 20px;
+    }
+
+    .alugueis {
+        padding: 20px;
+        width: 105%;
+    }
+
+    .esquerda h3 {
+        font-size: 14px;
+    }
+
+    .esquerda p {
+        font-size: 12px;
+        margin-top: -10px;
+    }
+
+    .btn_aluguel {
+        width: 90px;
+        font-size: 11px;
+        height: 25px;
+    }
+
+    .direita {
+        align-items: center;
+
+    }
+
+    .direita img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .infos {
+        width: 105%;
+        height: 180px;
+    }
+
+    .infos h2 {
+        font-size: 16px;
+    }
+
+
+    .card_conteudo {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .card_conteudo h3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+     .card_conteudo span {
+        font-size: 11px;
+     }
+
+     .container_inferior {
+        width: 105%;
+     }
+
+     .card_inferior_1 {
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+     }
+
+     .esquerda_inferior {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+     }
+
+     .card_inferior_1 h3, .card_inferior_2 h3, .card_inferior_3 h3, .card_inferior_4 h3 {
+        font-size: 14px;
+     }
+
+     .card_inferior_4 p {
+        font-size: 9px;
+     }
+
+     .direita_inferior {
+        display: none;
+     }
+}
