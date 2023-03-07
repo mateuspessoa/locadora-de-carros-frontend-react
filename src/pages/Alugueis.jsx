@@ -117,6 +117,12 @@ const Aluguel = () => {
     })
   }
 
+  function tornarVeiculoIndisponivel(id) {
+    axios.post("http://localhost:8080/api/veiculo/tornarindisponivel/" + id).then(result => {
+      setAtualizar(result);
+    })
+  }
+
   function colocarEmAtraso(id) {
     axios.post("http://localhost:8080/api/aluguel/colocarematraso/" + id).then(result => {
       setAtualizar(result);
@@ -197,7 +203,7 @@ const Aluguel = () => {
         .then((result) => {
           setAtualizar(result)
         })
-        tornarIndisponivel(idVeiculo)
+        tornarVeiculoIndisponivel(idVeiculo)
         tornarClienteAtivo(idCliente)
         
     } else {
@@ -239,7 +245,12 @@ const Aluguel = () => {
               >
               <option value="DEFAULT" disabled>Selecione...</option>
               {funcionarios?.map((funcionarioss) => (
-                <option key={funcionarioss.id} value={funcionarioss.id}>{funcionarioss.nome}</option>
+                <>
+                  {
+                    funcionarioss.status == "Regular" && <option key={funcionarioss.id} value={funcionarioss.id}>{funcionarioss.nome}</option>
+                  }
+                </>
+                
               ))}
           </select>
           </div>
@@ -270,7 +281,11 @@ const Aluguel = () => {
               >
               <option value="DEFAULT" disabled>Selecione...</option>
               {veiculos?.map((veiculoss) => (
-                <option key={veiculoss.id} value={veiculoss.id}>{veiculoss.nome} | {veiculoss.placa}</option>
+                <>
+                  {
+                  veiculoss.status == "Disponível" && <option key={veiculoss.id} value={veiculoss.id}>{veiculoss.nome} | {veiculoss.placa}</option>
+                  }
+                </>
               ))}
           </select>
           </div>

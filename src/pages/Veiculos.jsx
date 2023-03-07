@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Menu from "../components/Menu";
 import Sidebar from "../components/Sidebar";
+import NavBarMobile from "../components/NavBarMobile"
 import styles from "../styles/veiculo.module.css";
 import axios from "axios";
 import Pagination from "../components/Pagination";
@@ -10,7 +11,6 @@ import { AiOutlineStop } from 'react-icons/ai'
 import { AiFillSetting } from 'react-icons/ai'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { AiFillEdit } from 'react-icons/ai'
-import NavBarMobile from "../components/NavBarMobile";
 
 
 const Veiculos = () => {
@@ -229,41 +229,47 @@ const Veiculos = () => {
               <tbody>
                 {filtro?.map((veiculoss) => (
                   <tr key={veiculoss.id}>
-                    <td data-label="Name">{veiculoss.nome}</td>
-                    <td data-label="Title">{veiculoss.ano}</td>
-                    <td data-label="Website">{veiculoss.placa}</td>
-                    <td data-label="Role">{veiculoss.status}</td>
-                    <td className={styles.td_icones} data-label="Role">
-                      {veiculoss.status == "Disponível" &&
+                    {
+                      veiculoss.status !== "Removido da Frota" &&
                         <>
-                          <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
-                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
-                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {veiculoss.status == "Indisponível" &&
-                        <>
-                          <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
-                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {veiculoss.status == "Manutenção" &&
-                        <>
-                          <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
-                          <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {veiculoss.status == "Removido da Frota" &&
-                        <>
-                          <p>Apenas Consulta</p>
-                        </>
-                      }
-                    </td>
+                            <td data-label="Name">{veiculoss.nome}</td>
+                            <td data-label="Title">{veiculoss.ano}</td>
+                            <td data-label="Website">{veiculoss.placa}</td>
+                            <td data-label="Role">{veiculoss.status}</td>
+                            <td className={styles.td_icones} data-label="Role">
+                              {veiculoss.status == "Disponível" &&
+                                <>
+                                  <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
+                                  <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
+                                  <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                                  <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                                </>
+                              }
+                              {veiculoss.status == "Indisponível" &&
+                                <>
+                                  <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                                  <div onClick={() => colocarManutencao(veiculoss.id)} className={styles.tab_ico_3}><AiFillSetting color="#0000ff"/></div>
+                                  <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                                  <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                                </>
+                              }
+                              {veiculoss.status == "Manutenção" &&
+                                <>
+                                  <div onClick={() => tornarDisponivel(veiculoss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                                  <div onClick={() => tornarIndisponivel(veiculoss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
+                                  <div onClick={() => editar(veiculoss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                                  <div onClick={() => RemoverDaFrota(veiculoss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                                </>
+                              }
+                              {veiculoss.status == "Removido da Frota" &&
+                                <>
+                                  <p>Apenas Consulta</p>
+                                </>
+                              }
+                            </td>
+                          </>
+                    }
+                    
                   </tr>
                 ))}
               </tbody>

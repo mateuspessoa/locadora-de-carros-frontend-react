@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/CardHome.module.css";
 import PessoaImg from "../assets/pessoa.png";
@@ -8,8 +8,47 @@ import { MdWorkOutline } from "react-icons/md";
 import { BsPersonCheck } from "react-icons/bs";
 import { AiOutlineIdcard } from "react-icons/ai";
 import { AiOutlineDollar } from "react-icons/ai";
+import axios from "axios";
 
 const CardHome = () => {
+
+  const [clientes, setClientes] = useState([]);
+  const [funcionarios, setFuncionarios] = useState([]);
+  const [alugueis, setAlugueis] = useState([]);
+  const [veiculos, setVeiculos] = useState([]);
+
+  useEffect(() => {
+    buscarTodosClientes();
+    buscarTodosFuncionarios();
+    buscarTodosAlugueis();
+    buscarTodosveiculos();
+  }, [])
+
+  
+  function buscarTodosClientes() {
+    axios.get("http://localhost:8080/api/cliente/").then((result) => {
+        setClientes(result.data);
+    })
+  }
+
+  function buscarTodosFuncionarios() {
+    axios.get("http://localhost:8080/api/funcionario/").then((result) => {
+        setFuncionarios(result.data);
+    })
+  }
+
+  function buscarTodosveiculos() {
+    axios.get("http://localhost:8080/api/veiculo/").then((result) => {
+        setVeiculos(result.data);
+    })
+  }
+
+  function buscarTodosAlugueis() {
+    axios.get("http://localhost:8080/api/aluguel/").then((result) => {
+        setAlugueis(result.data);
+    })
+  }
+
   return (
 
     <div className={styles.container_geral}>
@@ -17,7 +56,7 @@ const CardHome = () => {
           <div className={styles.esquerda}>
             <h3>Parabéns Administrador!</h3>
             <p>
-              Você tem 150 aluguéis ativos. Clique no botão abaixo para
+              Você tem {alugueis.length} aluguéis ativos. Clique no botão abaixo para
               verificar os aluguéis!
             </p>
             <Link to="/alugueis" className={styles.link}>
@@ -38,7 +77,7 @@ const CardHome = () => {
                 <BsPersonCheck fontSize={25} color="red" />
               </div>
               <h3>
-                150 <br />
+                {clientes.length} <br />
                 <span>Clientes</span>
               </h3>
             </div>
@@ -48,7 +87,7 @@ const CardHome = () => {
                 <MdWorkOutline fontSize={25} color="#6B6BFF" />
               </div>
               <h3>
-                45 <br />
+                {funcionarios.length} <br />
                 <span>Funcionários</span>
               </h3>
             </div>
@@ -58,7 +97,7 @@ const CardHome = () => {
                 <AiOutlineCar fontSize={25} color="#02d402" />
               </div>
               <h3>
-                52 <br />
+                {veiculos.length} <br />
                 <span>Veículos</span>
               </h3>
             </div>
@@ -68,7 +107,7 @@ const CardHome = () => {
                 <AiOutlineIdcard fontSize={25} color="#edc204" />
               </div>
               <h3>
-                14 <br />
+                {alugueis.length} <br />
                 <span>Aluguéis</span>
               </h3>
             </div>
