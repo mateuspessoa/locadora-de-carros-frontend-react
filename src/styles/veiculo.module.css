@@ -361,3 +361,19 @@ table th {
 .tab_ico_edit:hover {
   background-color: #00e7fc3a;
 }
+
+@media (max-width: 740px) {
+  .container_sidebar {
+    width: 0%;
+  }
+
+  .container_acoes {
+    width: 104%;
+  }
+
+  .container_adcionar {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}

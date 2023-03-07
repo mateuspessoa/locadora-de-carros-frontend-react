@@ -10,6 +10,7 @@ import { AiOutlineStop } from 'react-icons/ai'
 import { AiFillSetting } from 'react-icons/ai'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { AiFillEdit } from 'react-icons/ai'
+import NavBarMobile from "../components/NavBarMobile";
 
 
 const Veiculos = () => {
@@ -194,6 +195,7 @@ const Veiculos = () => {
       <div ref={containerLateral} className={styles.container_lateral}>
         <div className={styles.menu}>
           <Menu />
+          <NavBarMobile />
         </div>
 
         <div className={styles.container_acoes}>
