@@ -5,6 +5,7 @@ import Veiculos from './pages/Veiculos'
 import Funcionarios from './pages/Funcionarios'
 import Clientes from './pages/Clientes'
 import Alugueis from './pages/Alugueis'
+import AluguelDetalhes from './pages/AluguelDetalhes'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/funcionarios' element={<Funcionarios />} />
           <Route path='/clientes' element={<Clientes />} />
           <Route path='/alugueis' element={<Alugueis />} />
+          <Route path='/aluguel/:id' element={<AluguelDetalhes />} />
 
         </Routes>
       </Router>

@@ -10,6 +10,7 @@ import { BsArrowBarDown } from 'react-icons/bs'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { BiDetail } from 'react-icons/bi'
 import { AiFillEdit } from 'react-icons/ai'
+import { Link } from "react-router-dom";
 
 
 const Aluguel = () => {
@@ -381,7 +382,9 @@ const Aluguel = () => {
                           <div onClick={() => colocarEmAtraso(alugueiss.id)} className={styles.tab_ico_2}><AiOutlineClockCircle color="#edc204"/></div>
                           <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id, alugueiss.cliente.id)}  className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
                           <div onClick={() => editar(alugueiss.id)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                          <Link to={{pathname: `/aluguel/${alugueiss.id}`}}>
+                            <div className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                          </Link>
                         </>
                       }
 
@@ -389,15 +392,19 @@ const Aluguel = () => {
                         <>
                           <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id, alugueiss.cliente.id)} className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
                           <div onClick={() => editar(alugueiss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                          <Link to={{pathname: `/aluguel/${alugueiss.id}`}}>
+                            <div className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                          </Link>
                         </>
                       }
 
                       {alugueiss.statusDevolucao == "Devolvido" &&
                         <>
                           <div>Apenas Consula</div>
+                          <Link to={{pathname: `/aluguel/${alugueiss.id}`}}>
+                            <div className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                          </Link>
                           
-                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
                         </>
                       }
                     </td>
