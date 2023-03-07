@@ -6,9 +6,9 @@ import axios from "axios";
 import Pagination from "../components/Pagination";
 import SelectorPages from "../components/SelectorPages";
 import { AiOutlineCheck } from 'react-icons/ai'
-import { MdOutlineBeachAccess } from 'react-icons/md'
-import { AiOutlineStop } from 'react-icons/ai'
-import { AiOutlineDelete } from 'react-icons/ai'
+import { BsArrowBarDown } from 'react-icons/bs'
+import { AiOutlineClockCircle } from 'react-icons/ai'
+import { BiDetail } from 'react-icons/bi'
 import { AiFillEdit } from 'react-icons/ai'
 
 
@@ -123,17 +123,25 @@ const Aluguel = () => {
     })
   }
 
+  async function tornarVeiculoDisponivel(id) {
+    await axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + id).then(result => {
+      setAtualizar(result);
+    })
+  }
+
   function colocarEmAtraso(id) {
     axios.post("http://localhost:8080/api/aluguel/colocarematraso/" + id).then(result => {
       setAtualizar(result);
     })
   }
 
-  function confirmarDevolucao(id) {
+  function confirmarDevolucao(id, idVeiculo) {
     axios.post("http://localhost:8080/api/aluguel/confirmardevolucao/" + id).then(result => {
       setAtualizar(result);
     })
-    tornarClienteInativo(idCliente);
+    axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + idVeiculo).then(result => {
+      setAtualizar(result);
+    })
   }
 
   function confirmarPagamento(id) {
@@ -366,16 +374,26 @@ const Aluguel = () => {
                     <td className={styles.td_icones} data-label="Role">
                       {alugueiss.statusDevolucao == "Dentro do Prazo" &&
                         <>
-                          <div onClick={() => tornarInativo(alugueiss.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
-                          <div onClick={() => editar(alugueiss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => colocarEmAtraso(alugueiss.id)} className={styles.tab_ico_2}><AiOutlineClockCircle color="#edc204"/></div>
+                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id)}  className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
+                          <div onClick={() => editar(alugueiss.id)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
                         </>
                       }
+
+                      {alugueiss.statusDevolucao == "Atrasado" &&
+                        <>
+                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id)} className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
+                          <div onClick={() => editar(alugueiss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
+                        </>
+                      }
+
                       {alugueiss.statusDevolucao == "Devolvido" &&
                         <>
-                          <div  className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div  className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div>Apenas Consula</div>
+                          
+                          <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
                         </>
                       }
                     </td>

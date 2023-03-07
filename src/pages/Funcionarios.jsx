@@ -233,41 +233,47 @@ const Funcionario = () => {
               <tbody>
                 {filtro?.map((funcionarioss) => (
                   <tr key={funcionarioss.id}>
-                    <td data-label="Name">{funcionarioss.nome}</td>
-                    <td data-label="Title">{funcionarioss.email}</td>
-                    <td data-label="Website">{funcionarioss.cpf}</td>
-                    <td data-label="Role">{funcionarioss.status}</td>
-                    <td className={styles.td_icones} data-label="Role">
-                      {funcionarioss.status == "Regular" &&
-                        <>
-                          <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
-                          <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
-                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {funcionarioss.status == "Férias" &&
-                        <>
-                          <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
-                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {funcionarioss.status == "Atestado" &&
-                        <>
-                          <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
-                          <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
-                          <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
-                        </>
-                      }
-                      {funcionarioss.status == "Demitido" &&
-                        <>
-                          <p>Apenas Consulta</p>
-                        </>
-                      }
-                    </td>
+                    {
+                      funcionarioss.status !== "Demitido" &&
+                      <>
+                        <td data-label="Name">{funcionarioss.nome}</td>
+                        <td data-label="Title">{funcionarioss.email}</td>
+                        <td data-label="Website">{funcionarioss.cpf}</td>
+                        <td data-label="Role">{funcionarioss.status}</td>
+                        <td className={styles.td_icones} data-label="Role">
+                          {funcionarioss.status == "Regular" &&
+                            <>
+                              <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
+                              <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
+                              <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                              <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                            </>
+                          }
+                          {funcionarioss.status == "Férias" &&
+                            <>
+                              <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                              <div onClick={() => colocarAtestado(funcionarioss.id)} className={styles.tab_ico_3}><GiHealthNormal color="#6B6BFF"/></div>
+                              <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                              <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                            </>
+                          }
+                          {funcionarioss.status == "Atestado" &&
+                            <>
+                              <div onClick={() => deixarRegular(funcionarioss.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
+                              <div onClick={() => colocarFerias(funcionarioss.id)} className={styles.tab_ico_2}><MdOutlineBeachAccess color="#edc204"/></div>
+                              <div onClick={() => editar(funcionarioss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
+                              <div onClick={() => Demitir(funcionarioss.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                            </>
+                          }
+                          {funcionarioss.status == "Demitido" &&
+                            <>
+                              <p>Apenas Consulta</p>
+                            </>
+                          }
+                        </td>
+                          </>
+                    }
+                    
                   </tr>
                 ))}
               </tbody>

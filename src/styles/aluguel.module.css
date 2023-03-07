@@ -355,7 +355,7 @@ table th {
   padding: 5px;
   border-radius: 50%;
   background-color: transparent;
-  border: 1px solid #6B6BFF;
+  border: 1px solid #0000ff;
   transition: all ease .5s;
   cursor: pointer;
 }
@@ -367,7 +367,7 @@ table th {
   padding: 5px;
   border-radius: 50%;
   background-color: transparent;
-  border: 1px solid #ff0000;
+  border: 1px solid #fff;
   transition: all ease .5s;
   cursor: pointer;
 }
@@ -398,7 +398,7 @@ table th {
 }
 
 .tab_ico_4:hover {
-  background-color: #9100003c;
+  background-color: #9494943c;
 }
 
 .tab_ico_edit:hover {
