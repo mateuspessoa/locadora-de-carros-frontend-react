@@ -135,11 +135,15 @@ const Aluguel = () => {
     })
   }
 
-  function confirmarDevolucao(id, idVeiculo) {
+  function confirmarDevolucao(id, idVeiculo, idCliente) {
     axios.post("http://localhost:8080/api/aluguel/confirmardevolucao/" + id).then(result => {
       setAtualizar(result);
     })
     axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + idVeiculo).then(result => {
+      setAtualizar(result);
+    })
+
+    axios.post("http://localhost:8080/api/cliente/tornarinativo/" + idCliente).then(result => {
       setAtualizar(result);
     })
   }
@@ -375,7 +379,7 @@ const Aluguel = () => {
                       {alugueiss.statusDevolucao == "Dentro do Prazo" &&
                         <>
                           <div onClick={() => colocarEmAtraso(alugueiss.id)} className={styles.tab_ico_2}><AiOutlineClockCircle color="#edc204"/></div>
-                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id)}  className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
+                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id, alugueiss.cliente.id)}  className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
                           <div onClick={() => editar(alugueiss.id)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
                         </>
@@ -383,7 +387,7 @@ const Aluguel = () => {
 
                       {alugueiss.statusDevolucao == "Atrasado" &&
                         <>
-                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id)} className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
+                          <div onClick={() => confirmarDevolucao(alugueiss.id, alugueiss.veiculo.id, alugueiss.cliente.id)} className={styles.tab_ico_3}><BsArrowBarDown color="#0000ff"/></div>
                           <div onClick={() => editar(alugueiss)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
                           <div onClick={() => excluir(alugueiss.id)} className={styles.tab_ico_4}><BiDetail color="#fff"/></div>
                         </>
