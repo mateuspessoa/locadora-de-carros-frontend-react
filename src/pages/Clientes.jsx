@@ -6,10 +6,10 @@ import axios from "axios";
 import Pagination from "../components/Pagination";
 import SelectorPages from "../components/SelectorPages";
 import { AiOutlineCheck } from 'react-icons/ai'
-import { MdOutlineBeachAccess } from 'react-icons/md'
 import { AiOutlineStop } from 'react-icons/ai'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { AiFillEdit } from 'react-icons/ai'
+import Swal from "sweetalert2";
 
 
 const Cliente = () => {
@@ -86,14 +86,14 @@ const Cliente = () => {
   }
 
   function tonarAtivo(id) {
-    axios.post("http://localhost:8080/api/cliente/tornarativo/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/cliente/tornarativo/" + id).then(() => {return new Swal("Sucesso", "O Cliente está com Ativo", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function tornarInativo(id) {
-    axios.post("http://localhost:8080/api/cliente/tornarinativo/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/cliente/tornarinativo/" + id).then(() => {return new Swal("Sucesso", "O Cliente está com Inativo", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
@@ -123,17 +123,49 @@ const Cliente = () => {
     console.log(cliente)
     if (cliente.id === undefined) {
       axios.post("http://localhost:8080/api/cliente/", cliente)
-        .then((result) => {
+        .then(() => {return new Swal("Sucesso", "Cliente Cadastrado com Sucesso", "success")}).then((result) => {
           setAtualizar(result)
         })
     } else {
       axios.put("http://localhost:8080/api/cliente/", cliente)
-      .then((result) => {
+      .then(() => {return new Swal("Sucesso", "Cliente Editado com Sucesso", "success")}).then((result) => {
         setAtualizar(result)
       })
     }
     limpar();
     fechar()
+  }
+
+  function excluir(id) {
+    Swal.fire({
+      title: 'Você tem Certeza?',
+      text: "Essa ação não poderá ser desfeita!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Excluir'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("http://localhost:8080/api/cliente/" + id).then(result => {
+          Swal.fire(
+            'Excluído!',
+            'O Cliente foi excluído com sucesso!.',
+            'success'
+          )
+          setAtualizar(result)
+        }).catch(function (error) {
+          if (error.response) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Não é possível excluir um Cliente que possui vínculo com aluguéis',
+              footer: 'Primeiro exclua os aluguéis vinculados a esse cliente.'
+            })
+          }
+        });
+      }
+    })
   }
 
   return (
@@ -230,14 +262,14 @@ const Cliente = () => {
                         <>
                           <div onClick={() => tornarInativo(clientess.id)} className={styles.tab_ico_2}><AiOutlineStop color="#edc204"/></div>
                           <div onClick={() => editar(clientess)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => excluir(clientess.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
                       {clientess.status == "Inativo" &&
                         <>
                           <div onClick={() => tonarAtivo(clientess.id)} className={styles.tab_ico_1}><AiOutlineCheck color="#02d402"/></div>
                           <div onClick={() => editar(clientess)} className={styles.tab_ico_edit}><AiFillEdit color="#00e7fc"/></div>
-                          <div onClick={() => Demitir(clientess.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
+                          <div onClick={() => excluir(clientess.id)} className={styles.tab_ico_4}><AiOutlineDelete color="#ff0000"/></div>
                         </>
                       }
                     </td>
