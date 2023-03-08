@@ -10,6 +10,7 @@ import { AiOutlineClockCircle } from "react-icons/ai";
 import { BiDetail } from "react-icons/bi";
 import { AiFillEdit } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Aluguel = () => {
   const [aluguel, setAluguel] = useState({
@@ -139,17 +140,17 @@ const Aluguel = () => {
   function colocarEmAtraso(id) {
     axios
       .post("http://localhost:8080/api/aluguel/colocarematraso/" + id)
-      .then((result) => {
-        setAtualizar(result);
-      });
+      .then(() => {return new Swal("Sucesso", "A Devolução está Atrasada", "success")}).then((result) => {
+        setAtualizar(result)
+      })
   }
 
   function confirmarDevolucao(id, idVeiculo, idCliente) {
     axios
       .post("http://localhost:8080/api/aluguel/confirmardevolucao/" + id)
-      .then((result) => {
-        setAtualizar(result);
-      });
+      .then(() => {return new Swal("Sucesso", "O Veículo foi Devolvido", "success")}).then((result) => {
+        setAtualizar(result)
+      })
     axios
       .post("http://localhost:8080/api/veiculo/tornardisponivel/" + idVeiculo)
       .then((result) => {
@@ -230,26 +231,51 @@ const Aluguel = () => {
     if (aluguel.id === undefined) {
       axios
         .post("http://localhost:8080/api/aluguel/", aluguel)
-        .then((result) => {
-          setAtualizar(result);
-        });
+        .then(() => {return new Swal("Sucesso", "Aluguel Cadastrado com Sucesso", "success")}).then((result) => {
+          setAtualizar(result)
+        })
       tornarVeiculoIndisponivel(idVeiculo);
       tornarClienteAtivo(idCliente);
     } else {
       axios
         .put("http://localhost:8080/api/aluguel/", aluguel)
-        .then((result) => {
-          setAtualizar(result);
-        });
+        .then(() => {return new Swal("Sucesso", "Aluguel Editado com Sucesso", "success")}).then((result) => {
+          setAtualizar(result)
+        })
     }
     fechar();
     limpar();
   }
 
   function excluir(id) {
-    axios.delete("http://localhost:8080/api/aluguel/" + id).then((result) => {
-      setAtualizar(result);
-    });
+    Swal.fire({
+      title: 'Você tem Certeza?',
+      text: "Essa ação não poderá ser desfeita!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Excluir'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.delete("http://localhost:8080/api/aluguel/" + id).then(result => {
+          Swal.fire(
+            'Excluído!',
+            'O Aluguel foi excluído com sucesso!.',
+            'success'
+          )
+          setAtualizar(result)
+        }).catch(function (error) {
+          if (error.response) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Algo deu errado, tente novamente mais tarde!',
+            })
+          }
+        });
+      }
+    })
   }
 
   return (
