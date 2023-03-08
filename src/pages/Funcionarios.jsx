@@ -10,6 +10,7 @@ import { MdOutlineBeachAccess } from 'react-icons/md'
 import { GiHealthNormal } from 'react-icons/gi'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { AiFillEdit } from 'react-icons/ai'
+import Swal from "sweetalert2";
 
 
 const Funcionario = () => {
@@ -91,26 +92,41 @@ const Funcionario = () => {
   }
 
   function colocarFerias(id) {
-    axios.post("http://localhost:8080/api/funcionario/ferias/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/funcionario/ferias/" + id).then(() => {return new Swal("Sucesso", "O Funcionário está de Férias", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function colocarAtestado(id) {
-    axios.post("http://localhost:8080/api/funcionario/atestado/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/funcionario/atestado/" + id).then(() => {return new Swal("Sucesso", "O Funcionário está com Atestado", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function deixarRegular(id) {
-    axios.post("http://localhost:8080/api/funcionario/regular/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/funcionario/regular/" + id).then(() => {return new Swal("Sucesso", "O Funcionário está Regular", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function Demitir(id) {
-    axios.post("http://localhost:8080/api/funcionario/demitido/" + id).then(result => {
-      setAtualizar(result);
+    Swal.fire({
+      title: 'Você tem Certeza?',
+      text: "Esta ação é irreverssível e os dados servirão apenas para consulta.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Remover'
+    }).then((result) => {
+      axios.post("http://localhost:8080/api/funcionario/demitido/" + id).then(result => {
+        Swal.fire(
+          'Removido!',
+          'O Funcionário foi removido com sucesso!.',
+          'success'
+        )
+        setAtualizar(result)
+      })
     })
   }
 
@@ -138,12 +154,12 @@ const Funcionario = () => {
     console.log(funcionario)
     if (funcionario.id === undefined) {
       axios.post("http://localhost:8080/api/funcionario/", funcionario)
-        .then((result) => {
+        .then(() => {return new Swal("Sucesso", "Funcionário Cadastrado com Sucesso", "success")}).then((result) => {
           setAtualizar(result)
         })
     } else {
       axios.put("http://localhost:8080/api/funcionario/", funcionario)
-      .then((result) => {
+      .then(() => {return new Swal("Sucesso", "Funcionário Editado com Sucesso", "success")}).then((result) => {
         setAtualizar(result)
       })
     }
@@ -183,7 +199,7 @@ const Funcionario = () => {
             <input type="text" name="telefone" onChange={handleChange} value={funcionario.telefone || ''} required />
           </div>
           {
-            funcionario.id && <input className={styles.btn_submit} type="submit" value="Cadastar" />
+            funcionario.id && <input className={styles.btn_submit} type="submit" value="Editar" />
           }
 
           {
