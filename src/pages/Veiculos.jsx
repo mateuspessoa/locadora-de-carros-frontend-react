@@ -11,6 +11,7 @@ import { AiOutlineStop } from 'react-icons/ai'
 import { AiFillSetting } from 'react-icons/ai'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { AiFillEdit } from 'react-icons/ai'
+import Swal from "sweetalert2";
 
 
 const Veiculos = () => {
@@ -91,26 +92,41 @@ const Veiculos = () => {
   }
 
   function tornarDisponivel(id) {
-    axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/veiculo/tornardisponivel/" + id).then(() => {return new Swal("Sucesso", "O Veículo está Disponível", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function tornarIndisponivel(id) {
-    axios.post("http://localhost:8080/api/veiculo/tornarindisponivel/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/veiculo/tornarindisponivel/" + id).then(() => {return new Swal("Sucesso", "O Veículo está Indisponível", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function colocarManutencao(id) {
-    axios.post("http://localhost:8080/api/veiculo/colocarmanutencao/" + id).then(result => {
-      setAtualizar(result);
+    axios.post("http://localhost:8080/api/veiculo/colocarmanutencao/" + id).then(() => {return new Swal("Sucesso", "O Veículo está em Manutenção", "success")}).then((result) => {
+      setAtualizar(result)
     })
   }
 
   function RemoverDaFrota(id) {
-    axios.post("http://localhost:8080/api/veiculo/removerdafrota/" + id).then(result => {
-      setAtualizar(result);
+    Swal.fire({
+      title: 'Você tem Certeza?',
+      text: "Esta ação é irreverssível e os dados servirão apenas para consulta.",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Remover'
+    }).then((result) => {
+      axios.post("http://localhost:8080/api/veiculo/removerdafrota/" + id).then(result => {
+        Swal.fire(
+          'Removido!',
+          'O Veículo foi removido com sucesso!.',
+          'success'
+        )
+        setAtualizar(result)
+      })
     })
   }
 
@@ -137,12 +153,12 @@ const Veiculos = () => {
     console.log(veiculo)
     if (veiculo.id === undefined) {
       axios.post("http://localhost:8080/api/veiculo/", veiculo)
-        .then((result) => {
+        .then(() => {return new Swal("Sucesso", "Veículo Cadastrado com Sucesso", "success")}).then((result) => {
           setAtualizar(result)
         })
     } else {
       axios.put("http://localhost:8080/api/veiculo/", veiculo)
-      .then((result) => {
+      .then(() => {return new Swal("Sucesso", "Veículo Editado com Sucesso", "success")}).then((result) => {
         setAtualizar(result)
       })
     }
@@ -178,7 +194,7 @@ const Veiculos = () => {
             <input type="text" name="valorDiaria" onChange={handleChange} value={veiculo.valorDiaria || ''} required />
           </div>
           {
-            veiculo.id && <input className={styles.btn_submit} type="submit" value="Cadastar" />
+            veiculo.id && <input className={styles.btn_submit} type="submit" value="Editar" />
           }
 
           {
@@ -229,8 +245,7 @@ const Veiculos = () => {
               <tbody>
                 {filtro?.map((veiculoss) => (
                   <tr key={veiculoss.id}>
-                    {
-                      veiculoss.status !== "Removido da Frota" &&
+
                         <>
                             <td data-label="Name">{veiculoss.nome}</td>
                             <td data-label="Title">{veiculoss.ano}</td>
@@ -268,7 +283,6 @@ const Veiculos = () => {
                               }
                             </td>
                           </>
-                    }
                     
                   </tr>
                 ))}
