@@ -1,0 +1,128 @@
+.container_geral {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .container_lateral {
+    display: flex;
+    flex-direction: column;
+    width: 82%;
+    height: 100vh;
+  }
+  
+  .container_sidebar {
+    width: 18%;
+  }
+  
+  .container_acoes {
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+    margin-left: 25px;
+    margin-top: 30px;
+    height: 82vh;
+    background-color: #2b2c40;
+    border-radius: 5px;
+    padding: 25px;
+  }
+
+  .conteudo_geral {
+    /*background-color: red;*/
+    display: flex;
+  }
+
+  .esquerda {
+    /*background-color: green;*/
+    width: 33%;
+  }
+
+  .direita {
+    width: 33%;
+    height: 70vh;
+    /*background-color: blue;*/
+  }
+
+  .container_acoes h1 {
+    font-family: 'Inter', sans-serif;
+    color: #d2d2f6;
+    font-weight: 600;
+  }
+
+  .titulo {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    height: 20px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+    color: #8B8BA5;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+}
+
+.titulo hr {
+    width: 7%;
+    margin-right: 12px;
+    border-color: #8B8BA5;
+}
+
+.titulo p {
+    font-weight: 600;
+}
+
+.info_funcionarios p {
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 4px;
+    color: #d2d2f6;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+.info_acoes {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    width: 70%;
+    height: 40px;
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid #02d402;
+    color: #02d402;
+    cursor: pointer;
+    transition: all ease .5s;
+}
+
+.btn_excluir {
+    width: 70%;
+    height: 40px;
+    margin-bottom: 12px;
+    font-family: 'Inter', sans-serif;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid red;
+    color: red;
+    cursor: pointer;
+    transition: all ease .5s;
+}
+
+.btn:hover {
+    border: none;
+    background-color: green;
+    color: white;
+}
+
+.btn_excluir:hover {
+    background-color: red;
+    border: none;
+    color: white;
+}
+
+.info_pagamento {
+  font-family: 'Inter', sans-serif;
+  color: #8B8BA5;
+}
